@@ -1571,6 +1571,11 @@ namespace TiltBrush
                 !PanelManager.m_Instance.IntroSketchbookMode;
         }
 
+        public bool IsMonoscopicMode()
+        {
+            return VrSdk.GetControllerDof() == TiltBrush.VrSdk.DoF.Two;
+        }
+
         public bool IsInStateThatAllowsAnyGrabbing()
         {
             return !TutorialManager.m_Instance.TutorialActive() &&
@@ -1733,7 +1738,8 @@ namespace TiltBrush
             {
                 return;
             }
-            if (VrSdk.GetHmdDof() == TiltBrush.VrSdk.DoF.None)
+            if (VrSdk.GetHmdDof() == TiltBrush.VrSdk.DoF.None ||
+                VrSdk.GetHmdDof() == TiltBrush.VrSdk.DoF.Two)
             {
                 Cursor.visible = false;
                 Cursor.lockState = CursorLockMode.Locked;
